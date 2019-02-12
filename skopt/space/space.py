@@ -443,17 +443,7 @@ class Categorical(Dimension):
                 np.allclose(self.prior_, other.prior_))
 
     def __repr__(self):
-        if len(self.categories) > 7:
-            cats = self.categories[:3] + (_Ellipsis(), ) + self.categories[-3:]
-        else:
-            cats = self.categories
-
-        if self.prior is not None and len(self.prior) > 7:
-            prior = self.prior[:3] + [_Ellipsis()] + self.prior[-3:]
-        else:
-            prior = self.prior
-
-        return "Categorical(categories={}, prior={})".format(cats, prior)
+        return "Categorical(categories={}, prior={})".format(self.categories, self.prior)
 
     def rvs(self, n_samples=None, random_state=None):
         choices = self._rvs.rvs(size=n_samples, random_state=random_state)
