@@ -647,6 +647,16 @@ class Space(object):
 
         return rows
 
+    def transformed_columns(self):
+
+        def _mask(i):
+            return np.full(
+                shape      = self.dimensions[i].transformed_size,
+                fill_value = i,
+                dtype      = int)
+
+        return np.hstack([_mask(i) for i in range(self.n_dims)])
+
     def transform(self, X):
         """Transform samples from the original space into a warped space.
 
